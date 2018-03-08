@@ -67,6 +67,11 @@ explore: order_items {
     relationship: many_to_one
   }
 
+  access_filter: {
+    field: products.brand
+    user_attribute: brand
+  }
+
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
@@ -79,7 +84,13 @@ explore: orders {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
-  }
+
+    }
+
+    access_filter: {
+      field: orders.user_id
+      user_attribute: user
+    }
 }
 
 explore: products {}
